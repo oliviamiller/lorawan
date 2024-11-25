@@ -13,23 +13,23 @@ import (
 )
 
 const (
-	// Join types
+	// Join types.
 	testJoinTypeOTAA = "OTAA"
 	testJoinTypeABP  = "ABP"
 
-	// Common test values
+	// Common test values.
 	testDecoderPath = "/path/to/decoder"
 
-	// OTAA test values
+	// OTAA test values.
 	testDevEUI = "0123456789ABCDEF"
 	testAppKey = "0123456789ABCDEF0123456789ABAAAA"
 
-	// ABP test values
+	// ABP test values.
 	testDevAddr = "01234567"
 	testAppSKey = "0123456789ABCDEF0123456789ABCDEE"
 	testNwkSKey = "0123456789ABCDEF0123456789ABCDEF"
 
-	// Gateway dependency
+	// Gateway dependency.
 	testGatewayName = "gateway"
 )
 
