@@ -1,4 +1,4 @@
-// Package gateway
+// Package gateway implements the sx1302 gateway module.
 package gateway
 
 /*
@@ -19,7 +19,6 @@ import (
 	"gateway/node"
 	"sync"
 	"time"
-
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
@@ -181,6 +180,7 @@ func (g *Gateway) receivePackets() {
 					continue
 				}
 				// Convert packet to go byte array
+				//nolint:intrange
 				for i := 0; i < int(packet.size); i++ {
 					payload = append(payload, byte(packet.payload[i]))
 				}

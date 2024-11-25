@@ -35,6 +35,12 @@ var (
 	errDevAddrLength       = errors.New("device address must be 4 bytes")
 )
 
+const (
+	// Join types.
+	joinTypeOTAA = "OTAA"
+	joinTypeABP  = "ABP"
+)
+
 // Config defines the node's config.
 type Config struct {
 	JoinType    string   `json:"join_type,omitempty"`
@@ -71,9 +77,9 @@ func (conf *Config) Validate(path string) ([]string, error) {
 	}
 
 	switch conf.JoinType {
-	case "ABP":
+	case joinTypeABP:
 		return conf.validateABPAttributes(path)
-	case "OTAA", "":
+	case joinTypeOTAA, "":
 		return conf.validateOTAAAttributes(path)
 	default:
 		return nil, resource.NewConfigValidationError(path, errInvalidJoinType)
@@ -229,7 +235,8 @@ func (n *Node) Reconfigure(ctx context.Context, deps resource.Dependencies, conf
 
 	if captureFreq > expectedFreq {
 		n.logger.Warnf(
-			"configured capture frequency (%v) is greater than the frequency (%v) / of expected uplink interval for node %v: lower capture frequency to avoid duplicate data",
+			`"configured capture frequency (%v) is greater than the frequency (%v)
+			of expected uplink interval for node %v: lower capture frequency to avoid duplicate data"`,
 			captureFreq,
 			expectedFreq,
 			n.NodeName)

@@ -190,6 +190,7 @@ func executeDecoder(ctx context.Context, script string, vars map[string]interfac
 	case <-timeoutCtx.Done():
 		vm.Interrupt <- func() {
 		}
+		cancel()
 		return nil, ctx.Err()
 	case res := <-resultChan:
 		// the decoder completed

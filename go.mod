@@ -5,9 +5,7 @@ go 1.23
 toolchain go1.23.2
 
 require (
-	github.com/edaniels/golinters v0.0.5-0.20220906153528-641155550742
 	github.com/golangci/golangci-lint v1.61.0
-	github.com/rhysd/actionlint v1.6.24
 	github.com/robertkrimen/otto v0.4.0
 	go.thethings.network/lorawan-stack/v3 v3.32.0
 	go.viam.com/rdk v0.50.0
@@ -89,7 +87,6 @@ require (
 	github.com/envoyproxy/protoc-gen-validate v1.1.0 // indirect
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
 	github.com/ettle/strcase v0.2.0 // indirect
-	github.com/fatih/camelcase v1.0.0 // indirect
 	github.com/fatih/color v1.17.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
@@ -249,7 +246,6 @@ require (
 	github.com/quasilyte/regex/syntax v0.0.0-20210819130434-b3f0c404a727 // indirect
 	github.com/quasilyte/stdinfo v0.0.0-20220114132959-f7386bf02567 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/robfig/cron v1.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.13.1 // indirect
 	github.com/rs/cors v1.11.1 // indirect
 	github.com/ryancurrah/gomodguard v1.3.5 // indirect
