@@ -6,11 +6,11 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"gateway/node"
 	"os"
 	"reflect"
 	"time"
 
-	"gateway/node"
 	"github.com/robertkrimen/otto"
 	"go.thethings.network/lorawan-stack/v3/pkg/crypto"
 	"go.thethings.network/lorawan-stack/v3/pkg/types"
@@ -178,7 +178,7 @@ func executeDecoder(ctx context.Context, script string, vars map[string]interfac
 	}
 
 	resultChan := make(chan result)
-	timeoutCtx, _ := context.WithTimeout(ctx, 10*time.Millisecond)
+	timeoutCtx, cancel := context.WithTimeout(ctx, 10*time.Millisecond)
 
 	go func() {
 		var res result
@@ -189,11 +189,11 @@ func executeDecoder(ctx context.Context, script string, vars map[string]interfac
 	select {
 	case <-timeoutCtx.Done():
 		vm.Interrupt <- func() {
-			errors.New("ctx canceled")
 		}
 		return nil, ctx.Err()
 	case res := <-resultChan:
 		// the decoder completed
+		cancel()
 		if res.err != nil {
 			return nil, res.err
 		}

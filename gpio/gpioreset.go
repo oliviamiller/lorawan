@@ -15,7 +15,7 @@ func waitGPIO() {
 func pinctrlSet(pin, state string) error {
 	cmd := exec.Command("pinctrl", "set", pin, state)
 	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("error setting GPIO %s to %s: %v", pin, state, err)
+		return fmt.Errorf("error setting GPIO %s to %s: %w", pin, state, err)
 	}
 	return nil
 }

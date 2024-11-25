@@ -18,12 +18,11 @@ module.tar.gz: build
 test:
 	CGO_LDFLAGS="$$CGO_LDFLAGS $(CGO_BUILD_LDFLAGS)" go test -v ./...
 
-.PHONY: tool-install
-tool-install: $(TOOL_BIN)/golangci-lint
 
-$(TOOL_BIN)/golangci-lint:
+tool-install:
 	GOBIN=`pwd`/$(TOOL_BIN) go install github.com/golangci/golangci-lint/cmd/golangci-lint
 
 lint: tool-install
 	go mod tidy
 	$(TOOL_BIN)/golangci-lint run -v --fix --config=./etc/.golangci.yaml
+

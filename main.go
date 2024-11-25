@@ -4,6 +4,7 @@ package main
 import (
 	"gateway/gateway"
 	"gateway/node"
+
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/module"
 	"go.viam.com/rdk/resource"

@@ -282,7 +282,7 @@ func (n *Node) Close(ctx context.Context) error {
 	return err
 }
 
-// Readings returns the node's readings
+// Readings returns the node's readings.
 func (n *Node) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
 	if n.gateway != nil {
 		allReadings, err := n.gateway.Readings(ctx, nil)

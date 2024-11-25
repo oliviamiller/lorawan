@@ -1,4 +1,4 @@
-// package gateway
+// Package gateway
 package gateway
 
 /*
@@ -15,11 +15,11 @@ import "C"
 import (
 	"context"
 	"errors"
+	"gateway/gpio"
+	"gateway/node"
 	"sync"
 	"time"
 
-	"gateway/gpio"
-	"gateway/node"
 	"go.viam.com/rdk/components/sensor"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
@@ -181,7 +181,7 @@ func (g *Gateway) receivePackets() {
 					continue
 				}
 				// Convert packet to go byte array
-				for i := range packet.size {
+				for i := 0; i < int(packet.size); i++ {
 					payload = append(payload, byte(packet.payload[i]))
 				}
 				g.handlePacket(ctx, payload)
@@ -243,7 +243,7 @@ func (g *Gateway) updateReadings(name string, newReadings map[string]interface{}
 	g.lastReadings[name] = readings
 }
 
-// Docommand validates that the dependency is a gateway, and adds and removes nodes from the device maps.
+// DoCommand validates that the dependency is a gateway, and adds and removes nodes from the device maps.
 func (g *Gateway) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
 	// Validate that the dependency is correct.
 	if _, ok := cmd["validate"]; ok {
@@ -373,6 +373,7 @@ func (g *Gateway) Close(ctx context.Context) error {
 	return nil
 }
 
+// Readings returns all the node's readings.
 func (g *Gateway) Readings(ctx context.Context, extra map[string]interface{}) (map[string]interface{}, error) {
 	g.readingsMu.Lock()
 	defer g.readingsMu.Unlock()

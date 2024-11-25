@@ -15,10 +15,9 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"gateway/node"
 	"math/rand"
 	"time"
-
-	"gateway/node"
 
 	"go.thethings.network/lorawan-stack/v3/pkg/crypto"
 	"go.thethings.network/lorawan-stack/v3/pkg/crypto/cryptoservices"
